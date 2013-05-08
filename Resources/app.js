@@ -38,6 +38,8 @@ if (Ti.version < 1.8 ) {
 		}
 		else {
 			Window = require('ui/handheld/ApplicationWindow');
+			
+			
 		}
 	}
 	new Window().open();
