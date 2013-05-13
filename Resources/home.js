@@ -8,7 +8,7 @@ var homeWin = function() {
 	
 	var table = Ti.UI.createTableView({
 		top: 5,
-		separatorColor: "#fff",
+		separatorColor: "#ffffff",
 	});
 	var tableData = [];
 	var client = Ti.Network.createHTTPClient();
