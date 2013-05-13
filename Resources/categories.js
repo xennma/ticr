@@ -1,5 +1,6 @@
 var categoriesWin = function() {
 
+	var parameter = require('parameter');
 	var win = Titanium.UI.createWindow({
 		title : 'Categories',
 		backgroundColor : '#fff'
@@ -10,8 +11,8 @@ var categoriesWin = function() {
 	});
 	var tableData = [];
 	var client = Ti.Network.createHTTPClient();
-	var domain = 'http://www.ticr.com/';
-	var url = domain + 'index.php?option=com_mobile&task=categories';
+	var domain = parameter.DOMAIN;
+	var url = domain + parameter.URL_CATEGORIES;
 	client.open('POST',url);
 	
 	client.onload = function(){

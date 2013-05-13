@@ -1,5 +1,6 @@
 var homeWin = function() {
 
+	var parameter = require('parameter');
 	//creamos la ventana
 	var win = Titanium.UI.createWindow({
 		title : 'Live & Popular',
@@ -12,8 +13,8 @@ var homeWin = function() {
 	});
 	var tableData = [];
 	var client = Ti.Network.createHTTPClient();
-	var domain = 'http://www.ticr.com/';
-	var url = domain + 'index.php?option=com_mobile';
+	var domain = parameter.DOMAIN;
+	var url = domain + parameter.URL;
 	client.open('POST',url);
 	
 	client.onload = function(){
