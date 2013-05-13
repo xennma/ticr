@@ -12,7 +12,7 @@ var homeWin = function() {
 	});
 	var tableData = [];
 	var client = Ti.Network.createHTTPClient();
-	var domain = 'http://192.168.1.4/ticr/';
+	var domain = 'http://www.ticr.com/';
 	var url = domain + 'index.php?option=com_mobile';
 	client.open('POST',url);
 	

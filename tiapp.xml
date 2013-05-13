@@ -46,5 +46,5 @@
         <target device="mobileweb">true</target>
         <target device="tizen">false</target>
     </deployment-targets>
-    <sdk-version>3.1.1.v20130425155025</sdk-version>
+    <sdk-version>3.1.0.GA</sdk-version>
 </ti:app>
