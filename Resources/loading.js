@@ -20,7 +20,7 @@ var loadingIndicator = function() {
 	  style:style,  
 	  height:Ti.UI.SIZE,
 	  width:Ti.UI.SIZE
-	});
+	}); 
 	
 	return activityIndicator;
 }
