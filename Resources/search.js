@@ -11,13 +11,19 @@ var searchWin = function() {
    		width:'50%',
    		height:'40dp'
 	});
-	var array = [];
-	var valueRow = Titanium.UI.createTableViewRow({height:'46dp', backgroundColor: '#f5f5f5'}); 
-	var valueLabel = Ti.UI.createLabel({color:'#000000', text:"Categories", font:{fontSize:21, fontWeight:'bold'}});
-	valueRow.add(valueLabel);
-	array.push(valueRow);
-	var tableView = Titanium.UI.createTableView({data:array, style:Titanium.UI.iPhone.TableViewStyle.GROUPED});
-	var pickerView = Titanium.UI.createView({height:248,bottom:-248});
+	var tr = Titanium.UI.create2DMatrix();
+	tr = tr.rotate(90);
+ 
+	var drop_button =  Titanium.UI.createButton({
+			style:Titanium.UI.iPhone.SystemButton.DISCLOSURE,
+			transform:tr,
+			top: 0,
+			right: '5dp'
+	});
+
+	var valueLabel = Ti.UI.createLabel({color:'#000000', text:"Categories", font:{fontSize:21, fontWeight:'bold'}, left:'10dp',
+	});	
+	var pickerView = Titanium.UI.createView({height:248,bottom:-248, width: '100%'});
 
 	var picker = Titanium.UI.createPicker({top:0});
 	picker.selectionIndicator=true;
@@ -43,11 +49,12 @@ var searchWin = function() {
 	picker.addEventListener('change',function(e)
 	{
 		valueLabel.text = picker.getSelectedRow(0).title;;
-		tableView.setData(array);
 		pickerView.animate(slideOut);
 	});
 	
-	view.add(tableView);
+	view.add(valueLabel);
+	view.add(drop_button);
+	//win.add(tableView);
 	win.add(view);
 	win.add(pickerView);
 	return win;	
