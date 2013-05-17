@@ -21,7 +21,7 @@ var upcomingWin = function() {
    		left: '50%',
    		width:'50%',   		
 	});
-	
+
 	var buttonOrder = Ti.UI.createButton({
 			title: 'Popular',
 			top: '1dp',
@@ -35,8 +35,26 @@ var upcomingWin = function() {
    		left: '0dp',   		
    		width:'100%',
 	});
-	var data = [];
-	data.push(Titanium.UI.createPickerRow({title:'Categories'}));
+	var data = [];	
+	
+	if(Ti.Platform.osname != 'android')
+	{
+		data.push(Titanium.UI.createPickerRow({title:'Categories'}));
+	}
+	var tr = Titanium.UI.create2DMatrix();
+	tr = tr.rotate(90);	 
+	var drop_button =  Titanium.UI.createButton({
+			style:Titanium.UI.iPhone.SystemButton.DISCLOSURE,
+			transform:tr,
+			top: 0,
+			right: '5dp'
+	});
+	
+	var valueLabel = Ti.UI.createLabel({color:'#000000', text:"Categories", font:{fontSize:21, fontWeight:'bold'}, left:'10dp',
+	});	
+	var pickerView = Titanium.UI.createView({height:248,bottom:-248, width: '100%'});	
+	
+	
 	var client = Ti.Network.createHTTPClient();
 	var domain = parameter.DOMAIN;
 	var url = domain + parameter.URL_CATEGORIES;
@@ -68,7 +86,9 @@ var upcomingWin = function() {
 	picker.addEventListener('change',function(e){
 		catId = e.row.value;
 		pageUpcoming = 0;
-  		table = getDataUpcoming(loading,parameter,table,pageUpcoming,catId,order,pageUpcoming); 		
+  		table = getDataUpcoming(loading,parameter,table,pageUpcoming,catId,order,pageUpcoming); 
+  		valueLabel.text = picker.getSelectedRow(0).title;
+		pickerView.animate(slideOut);		
 	});	
 		
 	buttonOrder.addEventListener('click', function(){
@@ -84,7 +104,24 @@ var upcomingWin = function() {
 			table = getDataUpcoming(loading,parameter,table,pageUpcoming,catId,order,pageUpcoming);	
 		});
 	
-	view.add(picker);
+	var slideIn =  Titanium.UI.createAnimation({bottom:0});
+	var slideOut =  Titanium.UI.createAnimation({bottom:-251});
+	
+	view.addEventListener('click', function(eventObject)
+	{
+			pickerView.animate(slideIn);		
+	});
+	
+	if(Ti.Platform.osname != 'android')
+	{
+		view.add(picker);
+	} else {
+		pickerView.add(picker);
+		view.add(valueLabel);
+		view.add(drop_button);			
+	}
+	
+	win.add(pickerView);	
 	view1.add(buttonOrder);
 	win.add(view);
 	win.add(view1);
