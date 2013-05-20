@@ -46,7 +46,7 @@ var upcomingWin = function() {
 			right: '5dp'
 	});
 	
-	var valueLabel = Ti.UI.createLabel({color:'#000000', text:"Categories", font:{fontSize:21, fontWeight:'bold'}, left:'10dp',
+	var valueLabel = Ti.UI.createLabel({color:'#000000', text:"Categories", font:{ fontWeight:'bold'}, left:'10dp',
 	});	
 	var pickerView = Titanium.UI.createView({height:248,top:-248, width: '100%'});	
 	

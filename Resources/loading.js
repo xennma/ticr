@@ -1,12 +1,12 @@
 var loadingIndicator = function() {
 
-	if (Ti.Platform.name === 'iPhone OS')
+	if(Ti.Platform.osname == 'android')
 	{
-  		style = Ti.UI.iPhone.ActivityIndicatorStyle.DARK;
+		style = Ti.UI.ActivityIndicatorStyle.DARK;  		
 	}
 	else 
 	{
-	  style = Ti.UI.ActivityIndicatorStyle.DARK;
+	  style = Ti.UI.iPhone.ActivityIndicatorStyle.DARK;
 	}
 	
 	var activityIndicator = Ti.UI.createActivityIndicator({
