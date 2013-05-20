@@ -35,12 +35,8 @@ var upcomingWin = function() {
    		left: '0dp',   		
    		width:'100%',
 	});
-	var data = [];	
-	
-	if(Ti.Platform.osname != 'android')
-	{
-		data.push(Titanium.UI.createPickerRow({title:'Categories'}));
-	}
+	var data = [];		
+	data.push(Titanium.UI.createPickerRow({title:'Categories'}));	
 	var tr = Titanium.UI.create2DMatrix();
 	tr = tr.rotate(90);	 
 	var drop_button =  Titanium.UI.createButton({
@@ -52,7 +48,7 @@ var upcomingWin = function() {
 	
 	var valueLabel = Ti.UI.createLabel({color:'#000000', text:"Categories", font:{fontSize:21, fontWeight:'bold'}, left:'10dp',
 	});	
-	var pickerView = Titanium.UI.createView({height:248,bottom:-248, width: '100%'});	
+	var pickerView = Titanium.UI.createView({height:248,top:-248, width: '100%'});	
 	
 	
 	var client = Ti.Network.createHTTPClient();
@@ -104,15 +100,15 @@ var upcomingWin = function() {
 			table = getDataUpcoming(loading,parameter,table,pageUpcoming,catId,order,pageUpcoming);	
 		});
 	
-	var slideIn =  Titanium.UI.createAnimation({bottom:0});
-	var slideOut =  Titanium.UI.createAnimation({bottom:-251});
+	var slideIn =  Titanium.UI.createAnimation({top:0});
+	var slideOut =  Titanium.UI.createAnimation({top:-251});
 	
 	view.addEventListener('click', function(eventObject)
 	{
 			pickerView.animate(slideIn);		
 	});
 	
-	if(Ti.Platform.osname != 'android')
+	if(Ti.Platform.osname == 'android')
 	{
 		view.add(picker);
 	} else {
@@ -121,12 +117,13 @@ var upcomingWin = function() {
 		view.add(drop_button);			
 	}
 	
-	win.add(pickerView);	
+		
 	view1.add(buttonOrder);
-	win.add(view);
+	win.add(view);	
 	win.add(view1);
 	win.add(table);
-
+	win.add(pickerView);
+	
 	return win;
 }
 
