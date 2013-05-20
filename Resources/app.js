@@ -28,10 +28,18 @@ var tab3 = Titanium.UI.createTab({
  
   
 var search = searchWin();
+var iconSearch = 'KS_nav_ui.png';
+if(Ti.Platform.osname != 'android')
+{
+	iconSearch = Titanium.UI.iPhone.SystemIcon.SEARCH;
+}
+
+
+
 var tab4 = Titanium.UI.createTab({  
     title:'Search',
     window: search,
-    icon:'KS_nav_ui.png',
+    icon: iconSearch,
 }); 
  
 //  add tab
